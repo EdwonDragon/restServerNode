@@ -14,13 +14,13 @@ const { validate } = require('../models/usuario');
 
 const router=Router();
 
-router.get('/', [
+router.get('/',usuariosGet );  
+// [
 
-  check('limite').isInt(),
-  check('desde').isInt(),
-  validarCapos
-],usuariosGet );  
-
+//   // check('limite').isInt(),
+//   // check('desde').isInt(),
+//   // validarCapos
+// ]
     
   router.put('/:id',[
 
