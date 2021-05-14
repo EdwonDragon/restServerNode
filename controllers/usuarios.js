@@ -64,6 +64,7 @@ const usuariosGet=async(req, res=response)=> {
 
   const usuariosDelete= async(req, res=response)=> {
     //Fisicamente
+    
     const {id}=req.params;
     // const usuario=await Usuario.findByIdAndDelete(id);
   
