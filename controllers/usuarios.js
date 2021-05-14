@@ -17,6 +17,8 @@ const usuariosGet=async(req, res=response)=> {
       .limit(Number(limite))
 
     ]);
+
+    
     res.json({
      total,
      usuarios
@@ -70,8 +72,8 @@ const usuariosGet=async(req, res=response)=> {
   
     //Cambiar estado
     const usuario=await Usuario.findByIdAndUpdate(id,{estado:false});
-
-    res.json(usuario)
+    
+    res.json({usuario})
   }
 
   const usuariosPatch= (req, res=response)=> {
