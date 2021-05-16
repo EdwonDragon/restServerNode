@@ -1,6 +1,6 @@
 const {Router}=require('express');
 const { check } = require('express-validator');
-const { login } = require('../controllers/auth');
+const { login, googleSingin } = require('../controllers/auth');
 const { validarCapos } = require('../middlewares/validar-campos');
 
 
@@ -12,6 +12,11 @@ check('password','La contraseña  es obligatorio').not().isEmpty(),
 
 validarCapos
 ],login );  
+
+router.post('/google', [
+    check('id_token','El id es necesario').not().isEmpty(),
+    validarCapos
+    ],googleSingin );  
 
 
 module.exports=router;
