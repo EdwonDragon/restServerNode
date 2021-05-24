@@ -1,33 +1,42 @@
-const { Categoria,role,Usuario, Producto } = require('../models');
+const {
+  Categoria,
+  role,
+  Usuario,
+  Producto
+} = require('../models');
 
 
-const validarRol=async(rol='')=>{
-    const existe= await role.findOne({rol});
-    if(!existe){
-         throw new Error(`El rol ${rol} no es valido`);
-    }
+const validarRol = async (rol = '') => {
+  const existe = await role.findOne({
+    rol
+  });
+  if (!existe) {
+    throw new Error(`El rol ${rol} no es valido`);
+  }
 }
 
-const existeEm= async(correo='')=>{
-    const existeEmail=await Usuario.findOne({correo});
+const existeEm = async (correo = '') => {
+  const existeEmail = await Usuario.findOne({
+    correo
+  });
 
-    if(existeEmail){
-      throw new Error(`El email ${correo} ya está registrado`);
-    }
+  if (existeEmail) {
+    throw new Error(`El email ${correo} ya está registrado`);
+  }
 }
 
-const existeUsuarioID= async(id='')=>{
-    const existeUser=await Usuario.findById(id);
+const existeUsuarioID = async (id = '') => {
+  const existeUser = await Usuario.findById(id);
 
-    if(!existeUser){
-      throw new Error(`El usuario con el id ${id} no existe`);
-    }
+  if (!existeUser) {
+    throw new Error(`El usuario con el id ${id} no existe`);
+  }
 }
-const existeCategoriaID= async(id='')=>{
-  
-  const existeCategoria=await Categoria.findById(id)
+const existeCategoriaID = async (id = '') => {
 
-  if(!existeCategoria){
+  const existeCategoria = await Categoria.findById(id)
+
+  if (!existeCategoria) {
     throw new Error(`La categoria con el id ${id} no existe`);
   }
   // if(!existeCategoria.estado){
@@ -36,11 +45,11 @@ const existeCategoriaID= async(id='')=>{
   // }
 }
 
-const existeProducto= async(id='')=>{
-  
-  const existeProducto=await Producto.findById(id)
+const existeProducto = async (id = '') => {
 
-  if(!existeProducto){
+  const existeProducto = await Producto.findById(id)
+
+  if (!existeProducto) {
     throw new Error(`El producto con el id ${id} no existe`);
   }
   // if(!existeProducto.estado){
@@ -49,8 +58,20 @@ const existeProducto= async(id='')=>{
   // }
 }
 
+const colecionesPermitidas = (colecion = '', coleciones = {}) => {
+  const incluida = coleciones.includes(colecion)
+  if (!incluida) {
+    throw new Error(`La colecion ${colecion} no existe dentro de las coleciones dentro de  ${coleciones}`)
+  }
+  return true;
+}
 
 
-
-
-module.exports={validarRol,existeEm,existeUsuarioID,existeCategoriaID,existeProducto}
+module.exports = {
+  validarRol,
+  existeEm,
+  existeUsuarioID,
+  existeCategoriaID,
+  existeProducto,
+  colecionesPermitidas
+}
