@@ -11,7 +11,9 @@ const { validarCapos } = require('../middlewares/validar-campos');
 const router=Router();
 
 
-router.post('/',ValidarArchivo,cargarArchivos)
+router.post('/',
+ValidarArchivo
+,cargarArchivos)
 
 router.put('/:coleccion/:id',[
     check('id','Id no es un IDD VALIDO DE MONGO').isMongoId(),
